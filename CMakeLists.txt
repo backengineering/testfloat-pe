@@ -29,6 +29,7 @@ project(testfloat-pe)
 # Target: testfloat-pe
 set(CMKR_TARGET testfloat-pe)
 # the linker does the Trolley problem LOL (https://en.wikipedia.org/wiki/Trolley_problem)
+# this is bad code...
 add_link_options("/FORCE")
 
 set(testfloat-pe_SOURCES
@@ -56,78 +57,6 @@ set(testfloat-pe_SOURCES
 	"source/8086-SSE/s_propagateNaNF32UI.c"
 	"source/8086-SSE/s_propagateNaNF64UI.c"
 	"source/8086-SSE/softfloat_raiseFlags.c"
-	"source/8086/extF80M_isSignalingNaN.c"
-	"source/8086/f128M_isSignalingNaN.c"
-	"source/8086/s_commonNaNToExtF80M.c"
-	"source/8086/s_commonNaNToExtF80UI.c"
-	"source/8086/s_commonNaNToF128M.c"
-	"source/8086/s_commonNaNToF128UI.c"
-	"source/8086/s_commonNaNToF16UI.c"
-	"source/8086/s_commonNaNToF32UI.c"
-	"source/8086/s_commonNaNToF64UI.c"
-	"source/8086/s_extF80MToCommonNaN.c"
-	"source/8086/s_extF80UIToCommonNaN.c"
-	"source/8086/s_f128MToCommonNaN.c"
-	"source/8086/s_f128UIToCommonNaN.c"
-	"source/8086/s_f16UIToCommonNaN.c"
-	"source/8086/s_f32UIToCommonNaN.c"
-	"source/8086/s_f64UIToCommonNaN.c"
-	"source/8086/s_propagateNaNExtF80M.c"
-	"source/8086/s_propagateNaNExtF80UI.c"
-	"source/8086/s_propagateNaNF128M.c"
-	"source/8086/s_propagateNaNF128UI.c"
-	"source/8086/s_propagateNaNF16UI.c"
-	"source/8086/s_propagateNaNF32UI.c"
-	"source/8086/s_propagateNaNF64UI.c"
-	"source/8086/softfloat_raiseFlags.c"
-	"source/ARM-VFPv2-defaultNaN/extF80M_isSignalingNaN.c"
-	"source/ARM-VFPv2-defaultNaN/f128M_isSignalingNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToExtF80M.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToExtF80UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToF128M.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToF128UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToF16UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToF32UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_commonNaNToF64UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_extF80MToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_extF80UIToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_f128MToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_f128UIToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_f16UIToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_f32UIToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_f64UIToCommonNaN.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNExtF80M.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNExtF80UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNF128M.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNF128UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNF16UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNF32UI.c"
-	"source/ARM-VFPv2-defaultNaN/s_propagateNaNF64UI.c"
-	"source/ARM-VFPv2-defaultNaN/softfloat_raiseFlags.c"
-	"source/ARM-VFPv2/extF80M_isSignalingNaN.c"
-	"source/ARM-VFPv2/f128M_isSignalingNaN.c"
-	"source/ARM-VFPv2/s_commonNaNToExtF80M.c"
-	"source/ARM-VFPv2/s_commonNaNToExtF80UI.c"
-	"source/ARM-VFPv2/s_commonNaNToF128M.c"
-	"source/ARM-VFPv2/s_commonNaNToF128UI.c"
-	"source/ARM-VFPv2/s_commonNaNToF16UI.c"
-	"source/ARM-VFPv2/s_commonNaNToF32UI.c"
-	"source/ARM-VFPv2/s_commonNaNToF64UI.c"
-	"source/ARM-VFPv2/s_extF80MToCommonNaN.c"
-	"source/ARM-VFPv2/s_extF80UIToCommonNaN.c"
-	"source/ARM-VFPv2/s_f128MToCommonNaN.c"
-	"source/ARM-VFPv2/s_f128UIToCommonNaN.c"
-	"source/ARM-VFPv2/s_f16UIToCommonNaN.c"
-	"source/ARM-VFPv2/s_f32UIToCommonNaN.c"
-	"source/ARM-VFPv2/s_f64UIToCommonNaN.c"
-	"source/ARM-VFPv2/s_propagateNaNExtF80M.c"
-	"source/ARM-VFPv2/s_propagateNaNExtF80UI.c"
-	"source/ARM-VFPv2/s_propagateNaNF128M.c"
-	"source/ARM-VFPv2/s_propagateNaNF128UI.c"
-	"source/ARM-VFPv2/s_propagateNaNF16UI.c"
-	"source/ARM-VFPv2/s_propagateNaNF32UI.c"
-	"source/ARM-VFPv2/s_propagateNaNF64UI.c"
-	"source/ARM-VFPv2/softfloat_raiseFlags.c"
 	"source/extF80M_add.c"
 	"source/extF80M_div.c"
 	"source/extF80M_eq.c"
@@ -613,9 +542,6 @@ set(testfloat-pe_SOURCES
 	"source/writeCase_z_ui64.c"
 	"source/writeHex.c"
 	"source/8086-SSE/specialize.h"
-	"source/8086/specialize.h"
-	"source/ARM-VFPv2-defaultNaN/specialize.h"
-	"source/ARM-VFPv2/specialize.h"
 	"source/fail.h"
 	"source/functions.h"
 	"source/genCases.h"
@@ -650,12 +576,10 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${testfloat-pe_SOURCES})
 
 target_compile_definitions(testfloat-pe PRIVATE
 	HAVE_PLATFORM_H
-	LITTLEENDIAN
 	SOFTFLOAT_FAST_INT64
 	EXTFLOAT80
 	FLOAT64
 	LONG_DOUBLE_IS_EXTFLOAT80
-	FLOAT128
 )
 
 target_compile_options(testfloat-pe PRIVATE

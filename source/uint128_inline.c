@@ -45,12 +45,3 @@ struct uint128 { uint64_t v0, v64; };
 struct uint128 { uint64_t v64, v0; };
 #endif
 
-bool eq128( struct uint128 a, struct uint128 b )
-    { return (a.v64 == b.v64) && (a.v0 == b.v0); }
-
-bool le128( struct uint128 a, struct uint128 b )
-    { return (a.v64 < b.v64) || ((a.v64 == b.v64) && (a.v0 <= b.v0)); }
-
-bool lt128( struct uint128 a, struct uint128 b )
-    { return (a.v64 < b.v64) || ((a.v64 == b.v64) && (a.v0 < b.v0)); }
-

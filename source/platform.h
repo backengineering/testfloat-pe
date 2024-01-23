@@ -43,5 +43,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifdef __GNUC_STDC_INLINE__
 #define INLINE inline
 #else
-#define INLINE extern inline
+#define INLINE inline
 #endif

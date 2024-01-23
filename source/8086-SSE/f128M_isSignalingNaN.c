@@ -48,7 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /*----------------------------------------------------------------------------
 *----------------------------------------------------------------------------*/
-bool f128M_isSignalingNaN( const float128_t *aPtr )
+inline bool f128M_isSignalingNaN( const float128_t *aPtr )
 {
     const uint32_t *aWPtr;
     uint32_t uiA96;
