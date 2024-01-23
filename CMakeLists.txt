@@ -27,6 +27,10 @@ endif()
 project(testfloat-pe)
 
 # Target: testfloat-pe
+set(CMKR_TARGET testfloat-pe)
+# the linker does the Trolley problem LOL (https://en.wikipedia.org/wiki/Trolley_problem)
+add_link_options("/FORCE")
+
 set(testfloat-pe_SOURCES
 	"source/8086-SSE/extF80M_isSignalingNaN.c"
 	"source/8086-SSE/f128M_isSignalingNaN.c"
@@ -652,6 +656,12 @@ target_compile_definitions(testfloat-pe PRIVATE
 	HAVE_PLATFORM_H
 	LITTLEENDIAN
 	SOFTFLOAT_FAST_INT64
+)
+
+target_compile_options(testfloat-pe PRIVATE
+	"/W0"
+	"/MP"
+	"/GL"
 )
 
 target_include_directories(testfloat-pe PRIVATE

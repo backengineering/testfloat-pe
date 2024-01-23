@@ -6,6 +6,9 @@ type = "executable"
 sources = ["source/**.c", "source/**.h"]
 include-directories = ["source", "source/include", "source/8086"]
 compile-definitions = ["HAVE_PLATFORM_H", "LITTLEENDIAN", "SOFTFLOAT_FAST_INT64"]
+compile-options = ["/W0", "/MP", "/GL"]
 
-# This is baaaad. fix this sometime. for now we use a tiny subset of problems.
-compile-options = ["/FORCE"] # the linker does the Trolley problem LOL (https://en.wikipedia.org/wiki/Trolley_problem)
+cmake-before = """
+# the linker does the Trolley problem LOL (https://en.wikipedia.org/wiki/Trolley_problem)
+add_link_options("/FORCE")
+"""

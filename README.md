@@ -1,6 +1,3 @@
-
-### Small fork of testfloat to use cmkr/cmake and to build individual PE files to use for testing obfuscation.
-
 Package Overview for Berkeley TestFloat Release 3e
 ==================================================
 
@@ -29,4 +26,14 @@ subdirectory:
 Other files in the package comprise the source code for TestFloat.
 
 
+# Back Engineering Labs Fork
 
+This is a fork of testfloat with softfloat added into the source base. This will only compile if you have MSVC or LLVM-MSVC. The reason for this repo is to build individual PE files for each float test. This way we can compare the execution before and after applying obfuscation. The binaries generated will be used in CI so that everytime we push changes to passes we can see if we broke anything.
+
+### How to build
+
+```
+cmake -B .build
+cd .build
+cmake --build . --Release
+```
