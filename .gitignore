@@ -1,3 +1,10 @@
 build/*/*.o
 build/*/*.a
 build/*/*.exe
+.build/*
+
+# cmkr
+build*/
+cmake-build*/
+CMakerLists.txt
+CMakeLists.txt.user

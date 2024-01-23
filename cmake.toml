@@ -1,0 +1,11 @@
+# Reference: https://build-cpp.github.io/cmkr/cmake-toml
+[project]
+name = "testfloat-pe"
+
+# TODO: define a target for each of your executables/libraries like this:
+[target.testfloat-pe]
+#type = "executable" # static, shared
+#sources = ["src/testfloat-pe/*.cpp", "include/testfloat-pe/*.hpp"]
+#include-directories = ["include"]
+#compile-features = ["cxx_std_11"]
+#link-libraries = ["target-or-library"]
