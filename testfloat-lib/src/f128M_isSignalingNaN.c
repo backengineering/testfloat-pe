@@ -43,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if !defined(int32_t)
 #include <stdint.h>             /* C99 standard integers */
 #endif
-#include "include/primitives.h"
+#include "primitives.h"
 #include "softfloat.h"
 
 /*----------------------------------------------------------------------------

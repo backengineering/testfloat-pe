@@ -37,7 +37,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <stdbool.h>
 #include "platform.h"
-#include "subj-C/subjfloat_config.h"
+#include "subjfloat_config.h"
 #include "subjfloat.h"
 #include "functions.h"
 

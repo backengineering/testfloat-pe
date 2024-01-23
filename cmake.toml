@@ -1,14 +1,4 @@
 [project]
-name = "testfloat-pe"
+name = "testfloat"
 
-[target.testfloat-pe]
-type = "executable"
-sources = ["source/**.c", "source/**.h"]
-include-directories = ["source", "source/include", "source/8086-SSE"]
-compile-definitions = ["HAVE_PLATFORM_H", "SOFTFLOAT_FAST_INT64", "EXTFLOAT80", "FLOAT64", "LONG_DOUBLE_IS_EXTFLOAT80"]
-compile-options = ["/W0", "/MP", "/GL", "/O2"]
-
-cmake-before = """
-# using /FORCE here because i dont care to fix linker issues LOL
-add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
-"""
+[subdir.testfloat-lib]
