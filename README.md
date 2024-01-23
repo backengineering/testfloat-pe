@@ -11,8 +11,18 @@ Only a small subset of all of the testfloat tests are used. Pre-compiled binarie
 
 ### How to build
 
+Build 64bit
+
 ```
 cmake -B .build
+cd .build
+cmake --build . --Release
+```
+
+Build 32bit
+
+```
+cmake -B .build -DCMAKE_GENERATOR_PLATFORM=WIN32
 cd .build
 cmake --build . --Release
 ```
