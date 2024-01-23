@@ -35,3 +35,13 @@ else()
 endif()
 add_subdirectory(testfloat-lib)
 set(CMAKE_FOLDER ${CMKR_CMAKE_FOLDER})
+
+# Subdirectory: testfloat-pe
+set(CMKR_CMAKE_FOLDER ${CMAKE_FOLDER})
+if(CMAKE_FOLDER)
+	set(CMAKE_FOLDER "${CMAKE_FOLDER}/testfloat-pe")
+else()
+	set(CMAKE_FOLDER testfloat-pe)
+endif()
+add_subdirectory(testfloat-pe)
+set(CMAKE_FOLDER ${CMKR_CMAKE_FOLDER})

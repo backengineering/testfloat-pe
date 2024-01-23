@@ -1,4 +1,3 @@
-
 /*============================================================================
 
 This C source file is part of TestFloat, Release 3e, a package of programs for
@@ -1454,14 +1453,13 @@ testFunction(
 void softfloat_invalidF128M(uint32_t* val) {
 }
 
-int main(int argc, char* argv[])
-{
+int main() {
 	const struct standardFunctionInfo* standardFunctionInfoPtr;
 	uint_fast8_t roundingPrecision;
 	int roundingCode;
 	void (* const* subjFunctionPtrPtr)();
 
-	fail_programName = "testfloat-pe";
+	fail_programName = TESTFLOAT_TEST_NAME;
 	genCases_setLevel(1);
 	verCases_maxErrorCount = 20;
 	testLoops_trueFlagsPtr = &softfloat_exceptionFlags;
@@ -1480,14 +1478,15 @@ int main(int argc, char* argv[])
 	standardFunctionInfoPtr = standardFunctionInfos;
 	subjFunctionPtrPtr = subjfloat_functions;
 	while (standardFunctionInfoPtr->namePtr) {
-		subjFunctionPtr = *subjFunctionPtrPtr;
-		if (subjFunctionPtr) {
-			testFunction(
-				standardFunctionInfoPtr, roundingPrecision, roundingCode);
+		if (!strcmp(standardFunctionInfoPtr->namePtr, TESTFLOAT_TEST_NAME)) {
+			subjFunctionPtr = *subjFunctionPtrPtr;
+			if (subjFunctionPtr) {
+				testFunction(
+					standardFunctionInfoPtr, roundingPrecision, roundingCode);
+				break;
+			}
 		}
 		++standardFunctionInfoPtr;
 		++subjFunctionPtrPtr;
 	}
-	verCases_exitWithStatus();
 }
-

@@ -27,10 +27,6 @@ endif()
 project(testfloat-lib)
 
 # Target: testfloat-lib
-set(CMKR_TARGET testfloat-lib)
-# using /FORCE here because i dont care to fix linker issues LOL
-add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
-
 set(testfloat-lib_SOURCES
 	"src/extF80M_add.c"
 	"src/extF80M_div.c"

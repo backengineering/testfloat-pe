@@ -2,3 +2,4 @@
 name = "testfloat"
 
 [subdir.testfloat-lib]
+[subdir.testfloat-pe]

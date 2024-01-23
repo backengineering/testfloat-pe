@@ -7,8 +7,3 @@ sources = ["src/**.c", "include/**.h"]
 include-directories = ["include"]
 compile-definitions = ["HAVE_PLATFORM_H", "SOFTFLOAT_FAST_INT64", "EXTFLOAT80", "FLOAT64", "LONG_DOUBLE_IS_EXTFLOAT80"]
 compile-options = ["/W0", "/MP", "/GL"]
-
-cmake-before = """
-# using /FORCE here because i dont care to fix linker issues LOL
-add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
-"""
