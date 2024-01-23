@@ -42,7 +42,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "writeCase.h"
 
 
-void writeCase_a_bf16( bfloat16_t a )
+void writeCase_a_bf16( float16_t a )
 {
 
     writeHex_bf16( a, 0 );

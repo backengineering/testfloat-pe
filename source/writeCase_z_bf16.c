@@ -46,9 +46,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 void
  writeCase_z_bf16(
-     bfloat16_t trueZ,
+     float16_t trueZ,
      uint_fast8_t trueFlags,
-     bfloat16_t subjZ,
+     float16_t subjZ,
      uint_fast8_t subjFlags
  )
 {

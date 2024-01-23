@@ -78,7 +78,7 @@ void genCases_bf16_ab_init( void );
 void genCases_bf16_ab_next( void );
 void genCases_bf16_abc_init( void );
 void genCases_bf16_abc_next( void );
-extern bfloat16_t genCases_bf16_a, genCases_bf16_b, genCases_bf16_c;
+extern float16_t genCases_bf16_a, genCases_bf16_b, genCases_bf16_c;
 
 void genCases_f32_a_init( void );
 void genCases_f32_a_next( void );

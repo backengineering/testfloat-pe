@@ -49,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 void
  test_a_bf16_z_f32(
-     float32_t trueFunction( bfloat16_t ), float32_t subjFunction( bfloat16_t ) )
+     float32_t trueFunction( float16_t ), float32_t subjFunction( float16_t ) )
 {
     printf(__func__);
     int count;

@@ -49,12 +49,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 void
  test_a_f32_z_bf16(
-     bfloat16_t trueFunction( float32_t ), bfloat16_t subjFunction( float32_t ) )
+     float16_t trueFunction( float32_t ), float16_t subjFunction( float32_t ) )
 {
     int count;
-    bfloat16_t trueZ;
+    float16_t trueZ;
     uint_fast8_t trueFlags;
-    bfloat16_t subjZ;
+    float16_t subjZ;
     uint_fast8_t subjFlags;
 
     genCases_f32_a_init();

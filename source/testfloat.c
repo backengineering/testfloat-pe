@@ -44,7 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "platform.h"
 #include "fail.h"
 #include "softfloat.h"
-#include "subjfloat_config.h"
+#include "subj-C/subjfloat_config.h"
 #include "subjfloat.h"
 #include "functions.h"
 #include "genCases.h"
@@ -136,8 +136,8 @@ typedef bool funcType_ab_f16_z_bool( float16_t, float16_t );
 #endif
 
 #ifdef BFLOAT16
-typedef float32_t funcType_a_bf16_z_f32( bfloat16_t );
-typedef bfloat16_t funcType_a_f32_z_bf16( float32_t );
+typedef float32_t funcType_a_bf16_z_f32( float16_t );
+typedef float16_t funcType_a_f32_z_bf16( float32_t );
 #endif
 
 typedef uint_fast32_t funcType_a_f32_z_ui32( float32_t );

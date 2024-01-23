@@ -202,8 +202,8 @@ void
 /*----------------------------------------------------------------------------
 *----------------------------------------------------------------------------*/
 #ifdef BFLOAT16
-void test_a_bf16_z_f32( float32_t ( bfloat16_t ), float32_t ( bfloat16_t ) );
-void test_a_f32_z_bf16( bfloat16_t ( float32_t ), bfloat16_t ( float32_t ) );
+void test_a_bf16_z_f32( float32_t ( float16_t ), float32_t ( float16_t ) );
+void test_a_f32_z_bf16( float16_t ( float32_t ), float16_t ( float32_t ) );
 #endif // BFLOAT16
 
 /*----------------------------------------------------------------------------

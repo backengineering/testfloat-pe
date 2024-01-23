@@ -88,17 +88,17 @@ INLINE bool f16_isNaN( float16_t a )
 
 #ifdef BFLOAT16
 
-INLINE bool bf16_same( bfloat16_t a, bfloat16_t b )
+INLINE bool bf16_same( float16_t a, float16_t b )
 {
-    union { uint16_t ui; bfloat16_t f; } uA, uB;
+    union { uint16_t ui; float16_t f; } uA, uB;
     uA.f = a;
     uB.f = b;
     return (uA.ui == uB.ui);
 }
 
-INLINE bool bf16_isNaN( bfloat16_t a )
+INLINE bool bf16_isNaN( float16_t a )
 {
-    union { uint16_t ui; bfloat16_t f; } uA;
+    union { uint16_t ui; float16_t f; } uA;
     uA.f = a;
     return 0x7F80 < (uA.ui & 0x7FFF);
 }

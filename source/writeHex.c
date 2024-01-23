@@ -137,9 +137,9 @@ void writeHex_f16( float16_t a, char sepChar )
 
 #endif
 
-void writeHex_bf16( bfloat16_t a, char sepChar )
+void writeHex_bf16( float16_t a, char sepChar )
 {
-    union { uint16_t ui; bfloat16_t f; } uA;
+    union { uint16_t ui; float16_t f; } uA;
     uint_fast16_t uiA;
 
     uA.f = a;

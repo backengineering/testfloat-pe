@@ -47,7 +47,7 @@ struct sequence {
     bool done;
 };
 
-union ui16_bf16 { uint16_t ui; bfloat16_t f; };
+union ui16_bf16 { uint16_t ui; float16_t f; };
 
 enum {
     bf16NumQIn  = 22,
@@ -168,7 +168,7 @@ static const uint16_t bf16P2[bf16NumP2] = {
 static const uint_fast64_t bf16NumQInP1 = bf16NumQIn * bf16NumP1;
 static const uint_fast64_t bf16NumQOutP1 = bf16NumQOut * bf16NumP1;
 
-static bfloat16_t bf16NextQInP1( struct sequence *sequencePtr )
+static float16_t bf16NextQInP1( struct sequence *sequencePtr )
 {
     int expNum, sigNum;
     union ui16_bf16 uZ;
@@ -191,7 +191,7 @@ static bfloat16_t bf16NextQInP1( struct sequence *sequencePtr )
 
 }
 
-static bfloat16_t bf16NextQOutP1( struct sequence *sequencePtr )
+static float16_t bf16NextQOutP1( struct sequence *sequencePtr )
 {
     int expNum, sigNum;
     union ui16_bf16 uZ;
@@ -217,7 +217,7 @@ static bfloat16_t bf16NextQOutP1( struct sequence *sequencePtr )
 static const uint_fast64_t bf16NumQInP2 = bf16NumQIn * bf16NumP2;
 static const uint_fast64_t bf16NumQOutP2 = bf16NumQOut * bf16NumP2;
 
-static bfloat16_t bf16NextQInP2( struct sequence *sequencePtr )
+static float16_t bf16NextQInP2( struct sequence *sequencePtr )
 {
     int expNum, sigNum;
     union ui16_bf16 uZ;
@@ -240,7 +240,7 @@ static bfloat16_t bf16NextQInP2( struct sequence *sequencePtr )
 
 }
 
-static bfloat16_t bf16NextQOutP2( struct sequence *sequencePtr )
+static float16_t bf16NextQOutP2( struct sequence *sequencePtr )
 {
     int expNum, sigNum;
     union ui16_bf16 uZ;
@@ -263,7 +263,7 @@ static bfloat16_t bf16NextQOutP2( struct sequence *sequencePtr )
 
 }
 
-static bfloat16_t bf16RandomQOutP3( void )
+static float16_t bf16RandomQOutP3( void )
 {
     union ui16_bf16 uZ;
 
@@ -275,7 +275,7 @@ static bfloat16_t bf16RandomQOutP3( void )
 
 }
 
-static bfloat16_t bf16RandomQOutPInf( void )
+static float16_t bf16RandomQOutPInf( void )
 {
     union ui16_bf16 uZ;
 
@@ -304,7 +304,7 @@ static const uint16_t bf16QInfWeightOffsets[bf16NumQInfWeightMasks] = {
     0x3E00
 };
 
-static bfloat16_t bf16RandomQInfP3( void )
+static float16_t bf16RandomQInfP3( void )
 {
     int weightMaskNum;
     union ui16_bf16 uZ;
@@ -321,7 +321,7 @@ static bfloat16_t bf16RandomQInfP3( void )
 
 }
 
-static bfloat16_t bf16RandomQInfPInf( void )
+static float16_t bf16RandomQInfPInf( void )
 {
     int weightMaskNum;
     union ui16_bf16 uZ;
@@ -334,7 +334,7 @@ static bfloat16_t bf16RandomQInfPInf( void )
 
 }
 
-static bfloat16_t bf16Random( void )
+static float16_t bf16Random( void )
 {
 
     switch ( random_ui8() & 7 ) {
@@ -355,10 +355,10 @@ static bfloat16_t bf16Random( void )
 }
 
 static struct sequence sequenceA, sequenceB, sequenceC;
-static bfloat16_t currentA, currentB, currentC;
+static float16_t currentA, currentB, currentC;
 static int subcase;
 
-bfloat16_t genCases_bf16_a, genCases_bf16_b, genCases_bf16_c;
+float16_t genCases_bf16_a, genCases_bf16_b, genCases_bf16_c;
 
 void genCases_bf16_a_init( void )
 {

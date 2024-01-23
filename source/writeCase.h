@@ -49,7 +49,7 @@ void writeCase_ab_f16( float16_t, float16_t );
 void writeCase_abc_f16( float16_t, float16_t, float16_t );
 #endif
 #ifdef BFLOAT16
-void writeCase_a_bf16( bfloat16_t );
+void writeCase_a_bf16( float16_t );
 #endif // BFLOAT16
 void writeCase_a_f32( float32_t, const char * );
 void writeCase_ab_f32( float32_t, float32_t );
@@ -84,7 +84,7 @@ void
 void writeCase_z_f16( float16_t, uint_fast8_t, float16_t, uint_fast8_t );
 #endif
 #ifdef BFLOAT16
-void writeCase_z_bf16( bfloat16_t, uint_fast8_t, bfloat16_t, uint_fast8_t );
+void writeCase_z_bf16( float16_t, uint_fast8_t, float16_t, uint_fast8_t );
 #endif
 void writeCase_z_f32( float32_t, uint_fast8_t, float32_t, uint_fast8_t );
 #ifdef FLOAT64
