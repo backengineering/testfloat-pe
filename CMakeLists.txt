@@ -28,9 +28,8 @@ project(testfloat-pe)
 
 # Target: testfloat-pe
 set(CMKR_TARGET testfloat-pe)
-# the linker does the Trolley problem LOL (https://en.wikipedia.org/wiki/Trolley_problem)
-# this is bad code...
-add_link_options("/FORCE")
+# using /FORCE here because i dont care to fix linker issues LOL
+add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
 
 set(testfloat-pe_SOURCES
 	"source/8086-SSE/extF80M_isSignalingNaN.c"
@@ -586,6 +585,7 @@ target_compile_options(testfloat-pe PRIVATE
 	"/W0"
 	"/MP"
 	"/GL"
+	"/O2"
 )
 
 target_include_directories(testfloat-pe PRIVATE
