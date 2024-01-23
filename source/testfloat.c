@@ -1461,239 +1461,25 @@ int main( int argc, char *argv[] )
     long i;
     int functionMatchAttrib;
 
-    /*------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
     fail_programName = "testfloat";
-    if ( argc <= 1 ) goto writeHelpMessage;
     genCases_setLevel( 1 );
     verCases_maxErrorCount = 20;
     testLoops_trueFlagsPtr = &softfloat_exceptionFlags;
     testLoops_subjFlagsFunction = subjfloat_clearExceptionFlags;
-    haveFunctionArg = false;
     standardFunctionInfoPtr = 0;
-    numOperands = 0;
     roundingPrecision = 0;
     roundingCode = 0;
-    for (;;) {
-        --argc;
-        if ( ! argc ) break;
-        argPtr = *++argv;
-        if ( ! argPtr ) break;
-        if ( argPtr[0] == '-' ) ++argPtr;
-        if (
-            ! strcmp( argPtr, "help" ) || ! strcmp( argPtr, "-help" )
-                || ! strcmp( argPtr, "h" )
-        ) {
- writeHelpMessage:
-            fputs(
-"testfloat [<option>...] <function>\n"
-"  <option>:  (* is default)\n"
-"    -help            --Write this message and exit.\n"
-"    -list            --List all testable subject functions and exit.\n"
-"    -seed <num>      --Set pseudo-random number generator seed to <num>.\n"
-" *  -seed 1\n"
-"    -level <num>     --Testing level <num> (1 or 2).\n"
-" *  -level 1\n"
-"    -errors <num>    --Stop each function test after <num> errors.\n"
-" *  -errors 20\n"
-"    -errorstop       --Exit after first function with any error.\n"
-"    -forever         --Test one function repeatedly (implies '-level 2').\n"
-"    -checkNaNs       --Check for specific NaN results.\n"
-"    -checkInvInts    --Check for specific invalid integer results.\n"
-"    -checkAll        --Same as both '-checkNaNs' and '-checkInvInts'.\n"
-#ifdef EXTFLOAT80
-"    -precision32     --For extF80, test only 32-bit rounding precision.\n"
-"    -precision64     --For extF80, test only 64-bit rounding precision.\n"
-"    -precision80     --For extF80, test only 80-bit rounding precision.\n"
-#endif
-"    -r<round>        --Test only specified rounding (if not inherent to\n"
-"                         function).\n"
-"    -tininessbefore  --Underflow tininess is detected before rounding.\n"
-"    -tininessafter   --Underflow tininess is detected after rounding.\n"
-"  <function>:\n"
-"    <int>_to_<float>               <float>_add      <float>_eq\n"
-"    <float>_to_<int>_r_<round>     <float>_sub      <float>_le\n"
-"    <float>_to_<int>_rx_<round>    <float>_mul      <float>_lt\n"
-"    <float>_to_<float>             <float>_mulAdd   <float>_eq_signaling\n"
-"    <float>_roundToInt_r_<round>   <float>_div      <float>_le_quiet\n"
-"    <float>_roundToInt_x           <float>_rem      <float>_lt_quiet\n"
-"                                   <float>_sqrt\n"
-"    -all1            --All unary functions.\n"
-"    -all2            --All binary functions.\n"
-"  <int>:\n"
-"    ui32             --Unsigned 32-bit integer.\n"
-"    ui64             --Unsigned 64-bit integer.\n"
-"    i32              --Signed 32-bit integer.\n"
-"    i64              --Signed 64-bit integer.\n"
-"  <float>:\n"
-#ifdef FLOAT16
-"    f16              --Binary 16-bit floating-point (half-precision).\n"
-#endif
-"    f32              --Binary 32-bit floating-point (single-precision).\n"
-#ifdef FLOAT64
-"    f64              --Binary 64-bit floating-point (double-precision).\n"
-#endif
-#ifdef EXTFLOAT80
-"    extF80           --Binary 80-bit extended floating-point.\n"
-#endif
-#ifdef FLOAT128
-"    f128             --Binary 128-bit floating-point (quadruple-precision).\n"
-#endif
-"  <round>:\n"
-"    near_even        --Round to nearest/even.\n"
-"    minMag           --Round to minimum magnitude (toward zero).\n"
-"    min              --Round to minimum (down).\n"
-"    max              --Round to maximum (up).\n"
-#ifdef SUBJFLOAT_ROUND_NEAR_MAXMAG
-"    near_maxMag      --Round to nearest/maximum magnitude (nearest/away).\n"
-#endif
-#if defined FLOAT_ROUND_ODD && defined SUBJFLOAT_ROUND_ODD
-"    odd              --Round to odd (jamming).  (Not allowed as an inherent\n"
-"                         rounding mode.  For 'roundToInt_x', rounds to minimum\n"
-"                         magnitude instead.)\n"
-#endif
-                ,
-                stdout
-            );
-            return EXIT_SUCCESS;
-        } else if ( ! strcmp( argPtr, "list" ) ) {
-            standardFunctionInfoPtr = standardFunctionInfos;
-            subjFunctionPtrPtr = subjfloat_functions;
-            for (;;) {
-                functionNamePtr = standardFunctionInfoPtr->namePtr;
-                if ( ! functionNamePtr ) break;
-                if ( *subjFunctionPtrPtr ) puts( functionNamePtr );
-                ++standardFunctionInfoPtr;
-                ++subjFunctionPtrPtr;
-            }
-            return EXIT_SUCCESS;
-        } else if ( ! strcmp( argPtr, "seed" ) ) {
-            if ( argc < 2 ) goto optionError;
-            ui = strtoul( argv[1], (char **) &argPtr, 10 );
-            if ( *argPtr ) goto optionError;
-            srand( ui );
-            --argc;
-            ++argv;
-        } else if ( ! strcmp( argPtr, "level" ) ) {
-            if ( argc < 2 ) goto optionError;
-            i = strtol( argv[1], (char **) &argPtr, 10 );
-            if ( *argPtr ) goto optionError;
-            genCases_setLevel( i );
-            --argc;
-            ++argv;
-        } else if ( ! strcmp( argPtr, "level1" ) ) {
-            genCases_setLevel( 1 );
-        } else if ( ! strcmp( argPtr, "level2" ) ) {
-            genCases_setLevel( 2 );
-        } else if ( ! strcmp( argPtr, "errors" ) ) {
-            if ( argc < 2 ) goto optionError;
-            i = strtol( argv[1], (char **) &argPtr, 10 );
-            if ( *argPtr ) goto optionError;
-            verCases_maxErrorCount = i;
-            --argc;
-            ++argv;
-        } else if ( ! strcmp( argPtr, "errorstop" ) ) {
-            verCases_errorStop = true;
-        } else if ( ! strcmp( argPtr, "forever" ) ) {
-            genCases_setLevel( 2 );
-            testLoops_forever = true;
-        } else if (
-            ! strcmp( argPtr, "checkNaNs" ) || ! strcmp( argPtr, "checknans" )
-        ) {
-            verCases_checkNaNs = true;
-        } else if (
-               ! strcmp( argPtr, "checkInvInts" )
-            || ! strcmp( argPtr, "checkinvints" )
-        ) {
-            verCases_checkInvInts = true;
-        } else if (
-            ! strcmp( argPtr, "checkAll" ) || ! strcmp( argPtr, "checkall" )
-        ) {
-            verCases_checkNaNs = true;
-            verCases_checkInvInts = true;
-#ifdef EXTFLOAT80
-        } else if ( ! strcmp( argPtr, "precision32" ) ) {
-            roundingPrecision = 32;
-        } else if ( ! strcmp( argPtr, "precision64" ) ) {
-            roundingPrecision = 64;
-        } else if ( ! strcmp( argPtr, "precision80" ) ) {
-            roundingPrecision = 80;
-#endif
-        } else if (
-               ! strcmp( argPtr, "rnear_even" )
-            || ! strcmp( argPtr, "rneareven" )
-            || ! strcmp( argPtr, "rnearest_even" )
-        ) {
-            roundingCode = ROUND_NEAR_EVEN;
-        } else if (
-            ! strcmp( argPtr, "rminmag" ) || ! strcmp( argPtr, "rminMag" )
-        ) {
-            roundingCode = ROUND_MINMAG;
-        } else if ( ! strcmp( argPtr, "rmin" ) ) {
-            roundingCode = ROUND_MIN;
-        } else if ( ! strcmp( argPtr, "rmax" ) ) {
-            roundingCode = ROUND_MAX;
-        } else if (
-               ! strcmp( argPtr, "rnear_maxmag" )
-            || ! strcmp( argPtr, "rnear_maxMag" )
-            || ! strcmp( argPtr, "rnearmaxmag" )
-            || ! strcmp( argPtr, "rnearest_maxmag" )
-            || ! strcmp( argPtr, "rnearest_maxMag" )
-        ) {
-#ifdef SUBJFLOAT_ROUND_NEAR_MAXMAG
-            roundingCode = ROUND_NEAR_MAXMAG;
-#else
-            fail(
-             "Rounding mode 'near_maxMag' is not supported or cannot be tested"
-            );
-#endif
-#ifdef FLOAT_ROUND_ODD
-        } else if ( ! strcmp( argPtr, "rodd" ) ) {
-#ifdef SUBJFLOAT_ROUND_ODD
-            roundingCode = ROUND_ODD;
-#else
-            fail( "Rounding mode 'odd' is not supported or cannot be tested" );
-#endif
-#endif
-        } else if ( ! strcmp( argPtr, "tininessbefore" ) ) {
-            softfloat_detectTininess = softfloat_tininess_beforeRounding;
-        } else if ( ! strcmp( argPtr, "tininessafter" ) ) {
-            softfloat_detectTininess = softfloat_tininess_afterRounding;
-        } else if ( ! strcmp( argPtr, "all1" ) ) {
-            haveFunctionArg = true;
-            standardFunctionInfoPtr = 0;
-            numOperands = 1;
-        } else if ( ! strcmp( argPtr, "all2" ) ) {
-            haveFunctionArg = true;
-            standardFunctionInfoPtr = 0;
-            numOperands = 2;
-        } else {
-            standardFunctionInfoPtr = standardFunctionInfos;
-            for (;;) {
-                functionNamePtr = standardFunctionInfoPtr->namePtr;
-                if ( ! functionNamePtr ) {
-                    fail( "Invalid argument '%s'", *argv );
-                }
-                if ( ! strcmp( argPtr, functionNamePtr ) ) break;
-                ++standardFunctionInfoPtr;
-            }
-            subjFunctionPtr =
-                subjfloat_functions
-                    [standardFunctionInfoPtr - standardFunctionInfos];
-            if ( ! subjFunctionPtr ) {
-                fail(
-                    "Function '%s' is not supported or cannot be tested",
-                    argPtr
-                );
-            }
-            haveFunctionArg = true;
-        }
-    }
-    if ( ! haveFunctionArg ) fail( "Function argument required" );
-    /*------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
-    signal( SIGINT, catchSIGINT );
-    signal( SIGTERM, catchSIGINT );
+
+    roundingCode = ROUND_MINMAG;
+    haveFunctionArg = true;
+    standardFunctionInfoPtr = 0;
+    numOperands = 1;
+
+    verCases_errorStop = true;
+    testLoops_forever = false;
+    verCases_checkNaNs = true;
+    verCases_checkInvInts = true;
+
     if ( standardFunctionInfoPtr ) {
         if ( testLoops_forever ) {
             if ( ! roundingPrecision ) roundingPrecision = 80;
@@ -1725,10 +1511,5 @@ int main( int argc, char *argv[] )
         }
     }
     verCases_exitWithStatus();
-    /*------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
- optionError:
-    fail( "'%s' option requires numeric argument", *argv );
-
 }
 

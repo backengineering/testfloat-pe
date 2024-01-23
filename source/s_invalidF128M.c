@@ -44,14 +44,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "specialize.h"
 #include "softfloat.h"
 
-void softfloat_invalidF128M( uint32_t *zWPtr )
-{
-
-    softfloat_raiseFlags( softfloat_flag_invalid );
-    zWPtr[indexWord( 4, 3 )] = defaultNaNF128UI96;
-    zWPtr[indexWord( 4, 2 )] = defaultNaNF128UI64;
-    zWPtr[indexWord( 4, 1 )] = defaultNaNF128UI32;
-    zWPtr[indexWord( 4, 0 )] = defaultNaNF128UI0;
-
-}
+//void softfloat_invalidF128M( uint32_t *zWPtr )
+//{
+//
+//    softfloat_raiseFlags( softfloat_flag_invalid );
+//    zWPtr[indexWord( 4, 3 )] = defaultNaNF128UI96;
+//    zWPtr[indexWord( 4, 2 )] = defaultNaNF128UI64;
+//    zWPtr[indexWord( 4, 1 )] = defaultNaNF128UI32;
+//    zWPtr[indexWord( 4, 0 )] = defaultNaNF128UI0;
+//
+//}
 

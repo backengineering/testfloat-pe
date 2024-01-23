@@ -565,10 +565,6 @@ set(testfloat-pe_SOURCES
 	"source/test_az_f64.c"
 	"source/test_az_f64_rx.c"
 	"source/testfloat.c"
-	"source/testfloat_gen.c"
-	"source/testfloat_ver.c"
-	"source/testsoftfloat.c"
-	"source/timesoftfloat.c"
 	"source/ui32_to_extF80.c"
 	"source/ui32_to_extF80M.c"
 	"source/ui32_to_f128.c"
@@ -656,6 +652,10 @@ target_compile_definitions(testfloat-pe PRIVATE
 	HAVE_PLATFORM_H
 	LITTLEENDIAN
 	SOFTFLOAT_FAST_INT64
+	EXTFLOAT80
+	FLOAT64
+	LONG_DOUBLE_IS_EXTFLOAT80
+	FLOAT128
 )
 
 target_compile_options(testfloat-pe PRIVATE
@@ -667,7 +667,7 @@ target_compile_options(testfloat-pe PRIVATE
 target_include_directories(testfloat-pe PRIVATE
 	source
 	"source/include"
-	"source/8086"
+	"source/8086-SSE"
 )
 
 get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} DEFINITION VS_STARTUP_PROJECT)
