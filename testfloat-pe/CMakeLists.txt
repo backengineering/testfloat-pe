@@ -29,7 +29,8 @@ project(testfloat-pe)
 # Target: testfloat-pe
 set(CMKR_TARGET testfloat-pe)
 # using /FORCE here because i dont care to fix linker issues LOL
-add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG" "/GL")
+add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
+add_compile_options("/O2" "/W0" "/MP" "/GL")
 
 project(TestGenerator)
 set(TEST_NAMES
@@ -73,12 +74,6 @@ target_compile_definitions(testfloat-pe PRIVATE
 	EXTFLOAT80
 	FLOAT64
 	LONG_DOUBLE_IS_EXTFLOAT80
-)
-
-target_compile_options(testfloat-pe PRIVATE
-	"/W0"
-	"/MP"
-	"/GL"
 )
 
 target_include_directories(testfloat-pe PRIVATE

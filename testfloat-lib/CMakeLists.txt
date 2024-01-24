@@ -576,6 +576,7 @@ target_compile_definitions(testfloat-lib PUBLIC
 )
 
 target_compile_options(testfloat-lib PUBLIC
+	"/O2"
 	"/W0"
 	"/MP"
 	"/GL"

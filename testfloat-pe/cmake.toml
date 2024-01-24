@@ -6,12 +6,12 @@ type = "executable"
 sources = ["main.c"]
 include-directories = ["../testfloat-lib/include"]
 compile-definitions = ["HAVE_PLATFORM_H", "SOFTFLOAT_FAST_INT64", "EXTFLOAT80", "FLOAT64", "LONG_DOUBLE_IS_EXTFLOAT80"]
-compile-options = ["/W0", "/MP", "/GL"]
 link-libraries = ["testfloat-lib"]
 
 cmake-before = """
 # using /FORCE here because i dont care to fix linker issues LOL
-add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG" "/GL")
+add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
+add_compile_options("/O2" "/W0" "/MP" "/GL")
 
 project(TestGenerator)
 set(TEST_NAMES
