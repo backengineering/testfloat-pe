@@ -29,7 +29,7 @@ project(testfloat-pe)
 # Target: testfloat-pe
 set(CMKR_TARGET testfloat-pe)
 # using /FORCE here because i dont care to fix linker issues LOL
-add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG")
+add_link_options("/FORCE" "/DEBUG:FULL" "/LTCG" "/GL")
 
 project(TestGenerator)
 set(TEST_NAMES
